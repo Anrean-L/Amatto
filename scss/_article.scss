@@ -1,0 +1,119 @@
+.main-article {
+    font-weight: 400;
+
+    .title {
+        color: #FFF;
+        height: 437px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Playfair Display";
+        font-size: adaptiv-rem(70, 32);
+        font-weight: 600;
+        background: center / max(1600px, 100%) url("../images/article-bg.jpg") no-repeat;
+        text-align: center;
+        padding: 0 15px;
+    }
+
+    .article {
+        max-width: rem(1278);
+        padding: 51px rem(math.div($containerPadding, 2)) 82px;
+        box-sizing: content-box;
+        margin: 0 auto;
+
+        &__title {
+            margin-bottom: 84px;
+            max-width: 516px;
+        }
+
+        &__section {
+            display: flex;
+            gap: adaptiv-px(84, 20);
+            padding-bottom: 64px;
+
+            &_center {
+                text-align: center;
+                max-width: 830px;
+                margin: 0 auto;
+            }
+        }
+
+        &__swiper {
+            position: relative;
+            margin-bottom: 65px;
+            .swiper-slide img {
+                width: 100%;
+                border-radius: 10px;
+                max-height: 688px;
+            }
+
+            .swiper-pagination-bullets {
+                bottom: 37.42px;
+            }
+        }
+
+        &__swiper-arrow {
+            &::before {
+                content: '';
+                background: url("../images/svgs/arrow.svg");
+                display: block;
+                position: absolute;
+                width: 55px;
+                height: 55px;
+                top: 50%;
+                z-index: 2;
+                transform: translateY(-50%);
+            }
+        }
+
+        &__swiper-next::before {
+            right: 40px;
+        }
+
+        &__swiper-prev::before {
+            left: 40px;
+            transform: translateY(-50%) rotate(180deg);
+        }
+
+        &__swiper-overlay {
+            position: absolute;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            top: 0;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 48.24%, #39373A 99.93%);
+            z-index: 1;
+            border-radius: 10px;
+        }
+    }
+
+    .section {
+        img {
+            border-radius: 10px;
+        }
+
+        &__text {
+            white-space: pre-line;
+        }
+
+        &__image-wrapper {
+            max-width: 613px;
+            flex: 1 0 50%;
+        }
+        &__image-wrapper img {
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .section {
+            flex-direction: column-reverse;
+        }
+        .article__swiper-arrow {
+            opacity: 0;
+            visibility: hidden;
+        }
+    }
+}
+

@@ -1,0 +1,56 @@
+@function prc($pxOne, $pxTwo) {
+    $result: math.div($pxOne, $pxTwo) * 100%;
+    @return $result;
+}
+
+@function rem($px) {
+    $result: math.div($px, 16)+rem;
+    @return $result;
+}
+
+@function em($pxOne, $pxTwo: 16) {
+    $result: math.div($pxOne, $pxTwo)+em;
+    @return $result;
+}
+
+@function adaptiv-px($pcSize, $mobSize, $min: $minWidth) {
+    $addSize: $pcSize - $mobSize;
+    $maxWidth: $maxWidth - $min;
+    $result: calc(#{$mobSize + px} + #{$addSize} * ((100vw - #{$min}px) / #{$maxWidth}));
+    @return min(#{$result}, #{$pcSize + px});
+}
+
+@function adaptiv-rem($pcSize, $mobSize, $min: $minWidth) {
+    $addSize: $pcSize - $mobSize;
+    $maxWidth: $maxWidth - $min;
+    $result: calc(#{$mobSize / 16 + rem} + #{$addSize / 16} * ((100vw - #{$min}px) / #{$maxWidth / 16}));
+    @return min($result, rem($pcSize));
+}
+
+@function adaptiv-em($pcSize, $mobSize, $relSize, $min: $minWidth) {
+    $addSize: $pcSize - $mobSize;
+    $maxWidth: $maxWidth - $min;
+    $result: calc(#{$mobSize / $relSize + em} + #{$addSize / $relSize} * ((100vw - #{$min}px) / #{$maxWidth / $relSize}));
+    @return min($result, em($pcSize, $relSize));
+}
+
+@mixin adaptiv-prop($property, $pcSize, $mobSize, $min: $minWidth) {
+    $addSize: $pcSize - $mobSize;
+    $maxWidth: $maxWidth - $min;
+    $result: calc(#{$mobSize + px} + #{$addSize} * ((100vw - #{$min}px) / #{$maxWidth}));
+    #{$property}: min(#{$result}, #{$pcSize + px})
+}
+
+@mixin adaptiv-prop-rem($property, $pcSize, $mobSize, $min: $minWidth) {
+    $addSize: $pcSize - $mobSize;
+    $maxWidth: $maxWidth - $min;
+    $result: calc(#{$mobSize / 16 + rem} + #{$addSize / 16} * ((100vw - #{$min}px) / #{$maxWidth / 16}));
+    #{$property}: min($result, rem($pcSize))
+}
+
+@mixin adaptiv-prop-em($property, $pcSize, $mobSize, $relSize, $min: $minWidth) {
+    $addSize: $pcSize - $mobSize;
+    $maxWidth: $maxWidth - $min;
+    $result: calc(#{$mobSize / $relSize + em} + #{$addSize / $relSize} * ((100vw - #{$min}px) / #{$maxWidth / $relSize}));
+    #{$property}: min($result, em($pcSize, $relSize))
+}

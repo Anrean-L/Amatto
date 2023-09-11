@@ -1,0 +1,131 @@
+@use "sass:math";
+
+// подклюфчение миксинов
+@import "base/mixins";
+
+// подключение шрифтов
+@import url('https://fonts.googleapis.com/css2?family=Commissioner:wght@300;400;500;600&family=Playfair+Display:wght@600;700;800&display=swap');
+
+// подключение локальных шрифтов
+// @import "fonts/fonts";
+
+// подключение иконочного шрифта
+@import "fonts/icons";
+
+// шрифт по умолчанию
+$fontFamily: "Commissioner";
+$fontSize: rem(16);
+
+// основные цвета
+$fontColor: #39373A;
+$secondColor: #FFCC29;
+
+// минимальная ширина страницы
+$minWidth: 320;
+// ширина макета
+$maxWidth: 1600;
+// ширина ограничивающего контейнера (0 - нет контейнера)
+$maxWidthContainer: 1480;
+// общий отступ у контейнера (отступ слева и справа в сумме)
+$containerPadding: 24;
+
+// тип адаптива:
+// 1 - динамический 
+// 2- по брейк-поинтам
+$responsiveType: 1;
+// ширина срабатывания первого брейко-поинта
+$containerWidth: $maxWidthContainer + $containerPadding;
+
+// Брейк-поинты
+$pc: em($containerWidth);
+$tablet: em(991.98);
+$mobile: em(767.98);
+$mobile-small: em(479.98);
+
+// обнуление
+@import "base/reset";
+
+body {
+    color: $fontColor;
+    font: 400 $fontSize $fontFamily;
+
+    .lock & {
+        overflow: hidden;
+        touch-action: none;
+    }
+}
+
+.wrapper {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    // сайт загружен
+    // .loaded & {}
+
+    // прижимаем футер
+    >main {
+        flex: 1 1 auto;
+    }
+
+    // фикс для слайдеров
+    >* {
+        min-width: 0;
+    }
+}
+
+// ограничивающий контейнер
+@if ($responsiveType==1) {
+    [class*="__container"] {
+        @if ($maxWidthContainer>0) {
+            max-width: rem($maxWidthContainer);
+            box-sizing: content-box;
+            margin: 0 auto;
+        }
+
+        @if ($containerPadding>0) {
+            padding: 0 rem(math.div($containerPadding, 2));
+        }
+    }
+}
+
+@else {
+    [class*="__container"] {
+        margin: 0 auto;
+
+        @if ($maxWidthContainer>0) {
+            max-width: rem($maxWidthContainer);
+            box-sizing: content-box;
+        }
+
+        @else {
+            @if ($containerPadding>0) {
+                padding: 0 rem(math.div($containerPadding, 2));
+            }
+        }
+
+        @media(max-width: $pc) {
+            max-width: rem(970);
+        }
+
+        @media(max-width: $tablet) {
+            max-width: rem(750);
+        }
+
+        @media(max-width: $mobile) {
+            max-width: none;
+
+            @if ($containerPadding>0 and $maxWidthContainer>0) {
+                padding: 0 rem(math.div($containerPadding, 2));
+            }
+        }
+    }
+}
+
+// подключение стилей отдельных страниц
+@import "header";
+@import "footer";
+@import "index";
+@import "blog";
+@import "article";

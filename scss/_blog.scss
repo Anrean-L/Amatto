@@ -1,0 +1,37 @@
+.main-blog {
+    .blog__content {
+        grid-template: repeat(2, 1fr) / repeat(3, 1fr);
+    }
+
+    .blog {
+        padding: adaptiv-px(65, 43) 0 adaptiv-px(158, 77);
+    }
+
+    .title {
+        height: 347px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Playfair Display";
+        font-size: adaptiv-rem(70, 32);
+        font-weight: 600;
+        text-transform: capitalize;
+        background: center/100% 100% url("../images/contacts-bg.png") no-repeat, linear-gradient(#FFCC29 0%, #FFCC29 100%);
+    }
+}
+
+@media (max-width: 1024px) {
+    .main-blog {
+        .blog__content {
+            grid-template: repeat(3, 1fr) / repeat(2, 1fr);
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .main-blog {
+        .blog__content {
+            grid-template: repeat(6, 1fr) / repeat(1, 1fr);
+        }
+    }
+}
