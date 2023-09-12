@@ -799,13 +799,15 @@ h3::after {
           align-items: center;
 }
 
-.hero .swiper-pagination-bullets, .article__swiper .swiper-pagination-bullets {
+.hero .swiper-pagination-bullets,
+.article__swiper .swiper-pagination-bullets {
   text-align: center;
   position: absolute;
   bottom: 22px;
   z-index: 2;
 }
-.hero .swiper-pagination-bullet, .article__swiper .swiper-pagination-bullet {
+.hero .swiper-pagination-bullet,
+.article__swiper .swiper-pagination-bullet {
   background-color: #FFF;
   opacity: 1;
   width: 9.5px;
@@ -813,7 +815,8 @@ h3::after {
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
-.hero .swiper-pagination-bullet-active, .article__swiper .swiper-pagination-bullet-active {
+.hero .swiper-pagination-bullet-active,
+.article__swiper .swiper-pagination-bullet-active {
   border: 2px solid #FFCC29;
 }
 
@@ -1729,7 +1732,7 @@ h3::after {
     -webkit-box-align: start;
         -ms-flex-align: start;
             align-items: flex-start;
-    margin-left: 0;
+    margin-right: 0;
   }
   .sale__image {
     background-position: 20%;
